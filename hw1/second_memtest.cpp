@@ -25,6 +25,13 @@ int main(int argc, char *argv[])
 
  cout << phrase << endl;
 
+ char* c2 = simplest_mem_manager.alloc_chars(3);
+ c2[0]= 'H';
+ c2[1] = 'i';
+ c2[2] = '\n';
+
+ cout << c2 << endl;
+
  // free world!
  // char* p;
  // p = phrase;
