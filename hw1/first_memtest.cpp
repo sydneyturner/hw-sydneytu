@@ -32,11 +32,11 @@ int main(int argc, char *argv[])
  char* p;
  p = phrase;
  p+=6;
- // cout << *p << endl;
+
  simplest_mem_manager.free_chars(p);
   
   char* phrase2 = simplest_mem_manager.alloc_chars(11);
-  //cout << phrase << endl;
+
 
   phrase2[0] = 'm';
   phrase2[1] = 'o';

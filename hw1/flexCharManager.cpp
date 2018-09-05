@@ -5,13 +5,16 @@ using namespace std;
 
 
 flexCharManager::flexCharManager() {
-	//used_memory = Mem_Block*[2];
+	used_memory = new Mem_Block*[2];
+
+	free_mem = BUF_SIZE;
+
 }
 
 flexCharManager::~flexCharManager() {
 	// go through used memory and delete each memory block 
 		// and delete the array
-	for(int i = 0; i < used_mem_size; i++) {
+	for(int i = 0; i < active_requests; i++) {
 		delete used_memory[i];
 	}
 	delete[] used_memory;
@@ -23,6 +26,9 @@ char* flexCharManager::alloc_chars(int n){
 
 	
 	char* temp = NULL;
+	if (n > 100000) {
+		return NULL;
+	}
 	// if there is nothing in there, add to the beginning
 	if (active_requests == 0) {
 
@@ -35,58 +41,65 @@ char* flexCharManager::alloc_chars(int n){
 		used_mem_size--;
 		free_mem -= n;
 
-		return temp;
+		//return temp;
 	}
-	// if (active_requests == 1) {
-	// 	Mem_Block* newBlock = new Mem_Block; 
+	if (active_requests == 1) {
+		Mem_Block* newBlock = new Mem_Block; 
 
-	// 	if (used_memory[0]->physical_location < newBlock->physical_location) {
-	// 		used_memory[active_requests] = newBlock;
-	// 		active_requests++;
+		if (used_memory[0]->physical_location < newBlock->physical_location) {
+			used_memory[active_requests] = newBlock;
+			active_requests++;
 		
-	// 		used_mem_size--;
-	// 		free_mem -= n;
-	// 		temp += n;
-	// 	}
-	// 	else if (used_memory[0]->physical_location > newBlock->physical_location) {
-	// 		Mem_Block* tempBlock = new Mem_Block;
-	// 		tempBlock = used_memory[0];
+			used_mem_size--;
+			free_mem -= n;
+			temp += n;
+		}
+		else if (used_memory[0]->physical_location > newBlock->physical_location) {
+			Mem_Block* tempBlock = new Mem_Block;
+			tempBlock = used_memory[0];
 
-	// 		used_memory[0] = newBlock;
-	// 		used_memory[active_requests] = tempBlock;
+			used_memory[0] = newBlock;
+			used_memory[active_requests] = tempBlock;
 
-	// 		active_requests++;
+			active_requests++;
 		
-	// 		used_mem_size--;
-	// 		free_mem -= n;
-	// 		temp += n;
+			used_mem_size--;
+			free_mem -= n;
+			temp += n;
 
-	// 	}
-	// 	// DO I HAVE TO RESIZE NOW
-	// 	return temp;
-	// }
+		}
+		// Do I have to RESIZE NOW
+		//resizeMem(used_mem_size, active_requests);
+		//return temp;
+	}
+	if (active_requests > 1 && active_requests < used_mem_size) {
+			
 
-	// if (active_requests > 1) {
+		for (int i = 0; i < active_requests; i++) {
 
-	// 	for (int i = 0; i < active_requests; i++) {
-	// 		if (used_memory[]->physical_location > 6) {
+			if (used_memory[i]->physical_location > ) {
 				
-	// 		}
-	// 	}
-	// 	// if (counter >= n) {
-	// 	// 	// insert memblock
-	// 	// }
-	// }
-	// if (active_requests == used_mem_size) {} double array
+				// shift over everything to the right by 1
+				for() {
+					used_memory[i] = used_memory[i+1];
+				}
+				// place the memblock in that spot
+
+			}
+			else if () {
+
+			}
+		}
+		// if (counter >= n) {
+		// 	// insert memblock
+		// }
+	}
+	if (active_requests >= used_mem_size) {
+		// double array
+		resizeMem(active_requests, used_mem_size);
+	}
 	// when to make it smaller
 
-	//if there are gaps in used memory 
-	// make sure n < ten thousand
-	// if thee is no gap enough then look at the last place
-	// in used memory (assuming there is enough space) 
-	// and then add to the end
-	// if there is no space at the end, resize it
-		// declare a new giant memblock and copy over everything
 
 
 	return temp;
@@ -95,12 +108,42 @@ char* flexCharManager::alloc_chars(int n){
 void flexCharManager::free_chars(char* p) {
 	// do you have to figure out which memblock you are on
 	char* temp = p;
-	for (char* i = p; ; i++) {
+	for (char* i = p; i < active_requests; i++) {
 		*i = '\0';
 	}
 
 	// delete memblock
 	// shift everything on the right to the left
+
+}
+
+void resizeMem(int &used_mem_size, int &active_requests) {
+
+	if (active_requests >= used_mem_size) {
+		int doublSize = used_mem_size * 2;
+		Mem_Block* tempMem = new Mem_Block*[doublSize];
+		for (int i = 0; i < used_mem_size; i++) {
+			 tempMem = used_memory[i];
+		}
+		used_mem_size = doublSize;
+		// delete old array
+		delete[] used_memory;
+		// set tempMem to used
+		used_memory = tempMem;
+	}
+	
+	else if () { // Too many mem blocks
+		// SIZE DOWN by 1/2
+		int halfSize = used_mem_size / 2;
+		Mem_Block* tempMem = new Mem_Block*[halfSize];
+		for (int i = 0; i < used_mem_size; i++) {
+			tempMem = used_memory[i];
+		}
+
+		used_mem_size = halfSize;
+		delete[] used_memory;
+		used_memory = tempMem;
+	}
 
 }
 

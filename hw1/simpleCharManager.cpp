@@ -37,7 +37,6 @@ char* simpleCharManager::alloc_chars(int n){
 
 void simpleCharManager::free_chars(char* p){
 	free_place = p;
-	// check if space is already null
 
 	for (char* i = p; i != buffer+BUF_SIZE; i++) {
 		*i = '\0';

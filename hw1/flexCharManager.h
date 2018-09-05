@@ -33,6 +33,8 @@ track of active requests */
             int active_requests;
 /* memory blocks available in array of memory blocks*/
             int used_mem_size;
+  private:
+            void resizeMem(int &active_requests, int &used_mem_size);
 
 };
 
