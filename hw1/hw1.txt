@@ -3,17 +3,17 @@ Problem 1
 		1,4,8
 
 	Part (b)
-		2345. sublime
+		2,3,4,5
 
-	Part (c) -- check this one
+	Part (c)
 		2,
-	Part D
+	Part (d)
 		2,4
 
 Problem 2
 	Part (a)
 		3.
-	Part (b)
+	Part (b) -- check this one
 		1. git status
 		2. git log
 
@@ -21,5 +21,8 @@ Problem 3
 	Git will then make the files a part of the repository history
 
 
+
 Problem 6
 Explain how it is possible to overwrite part of the buffer that the user still has a pointer to (and may try to access via that pointer).
+	
+	It is possible to overwrite part of the buffer that the user still has a pointer to because 

@@ -26,28 +26,28 @@ int main(int argc, char *argv[])
  cout << phrase << endl;
 
  // free world!
- char* p;
- p = phrase;
- p+=6;
- // cout << *p << endl;
- simplest_mem_manager.free_chars(p);
+ // char* p;
+ // p = phrase;
+ // p+=6;
+ // // cout << *p << endl;
+ // simplest_mem_manager.free_chars(p);
   
-  char* phrase2 = simplest_mem_manager.alloc_chars(11);
-  //cout << phrase << endl;
+ //  char* phrase2 = simplest_mem_manager.alloc_chars(11);
+ //  //cout << phrase << endl;
 
-  phrase2[0] = 'm';
-  phrase2[1] = 'o';
-  phrase2[2] = 'o';
-  phrase2[3] = 'n';
-  phrase2[4] = '!';
-  phrase2[5] = ' ';
-  phrase2[6] = 'B';
-  phrase2[7] = 'y';
-  phrase2[8] = 'e';
-  phrase2[9] = '.';
-  phrase2[10] = '\n';
+ //  phrase2[0] = 'm';
+ //  phrase2[1] = 'o';
+ //  phrase2[2] = 'o';
+ //  phrase2[3] = 'n';
+ //  phrase2[4] = '!';
+ //  phrase2[5] = ' ';
+ //  phrase2[6] = 'B';
+ //  phrase2[7] = 'y';
+ //  phrase2[8] = 'e';
+ //  phrase2[9] = '.';
+ //  phrase2[10] = '\n';
  
-  cout << phrase << endl;
+ //  cout << phrase << endl;
 /*replace with driver code as specificed in the assignment*/
   //std::cout << "Hello world!\n";
   
