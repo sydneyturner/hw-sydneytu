@@ -1,1 +1,1 @@
-# hw-usc-sydneytu
+# hw-sydneytu
