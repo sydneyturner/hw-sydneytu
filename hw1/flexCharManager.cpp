@@ -56,27 +56,28 @@ char* flexCharManager::alloc_chars(int n){
 		int start_differnce;
 		int end_diff;
 		int difference;
-		
-		for (int i = 0; i < active_requests; i++) {
-			// find space before the first
-			start_differnce = &buffer[0] - used_memory[0]->physical_location;
-			if (start_differnce > 0 && start_differnce <= n) {
-				temp = &buffer[0];
-				//for (int j = 0; j < active_requests; j++) {
+
+		// find space before the first
+		start_differnce = &buffer[0] - used_memory[0]->physical_location;
+		if (start_differnce > 0 && start_differnce <= n) {
+			temp = &buffer[0];
+			for (int j = 0; j < active_requests; j++) {
 				// shift everything to the right and add memblock to the front
-				used_memory[i] = used_memory[i+1];
-				//}
-				used_memory[0] = new Mem_Block(start_differnce, temp);
+				used_memory[j] = used_memory[j+1];
 			}
+			used_memory[0] = new Mem_Block(start_differnce, temp);
+		}
 
 			// find space after the last
-			end_diff = &buffer[BUF_SIZE-1] - (used_memory[active_requests]->physical_location + used_memory[active_requests]->size);
-			if (end_diff <= n) {
+		//end_diff = used_memory[active_requests]->physical_location  //- &buffer[BUF_SIZE-1];
+		if (used_memory[active_requests]->physical_location + n < &buffer[BUF_SIZE]) {
 				// add memblock to the end
-				temp = &buffer[BUF_SIZE-1];
-				used_memory[active_requests] = new Mem_Block(end_diff, temp);
-			}
-
+			temp = &buffer[BUF_SIZE-1];
+			used_memory[active_requests] = new Mem_Block(end_diff, temp);
+		}
+		
+		for (int i = 0; i < active_requests; i++) {
+			// find space between the memblocks
 			difference = (used_memory[i]->physical_location + used_memory[i]->size) - used_memory[i+1]->physical_location;
 			if (difference <= n) {
 				temp = used_memory[i]->physical_location + used_memory[i]->size + 1;

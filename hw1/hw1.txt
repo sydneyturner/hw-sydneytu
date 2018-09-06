@@ -12,10 +12,10 @@ Problem 1
 
 Problem 2
 	Part (a)
-		3.
-	Part (b) -- check this one
-		1. git status
-		2. git log
+		3
+	Part (b) 
+		1. git add 
+		2. git status
 
 Problem 3
 	Git will then make the files a part of the repository history

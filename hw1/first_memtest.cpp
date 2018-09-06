@@ -8,7 +8,6 @@ int main(int argc, char *argv[])
   simpleCharManager simplest_mem_manager;
 
   /*write driver code as described in the assignment to replace this */
-  // std::cout << "Hello world!\n" ;
 
   char* phrase = simplest_mem_manager.alloc_chars(13);
   phrase[0] = 'H';
@@ -28,7 +27,6 @@ int main(int argc, char *argv[])
 
  cout << phrase << endl;
 
- // free world!
  char* p;
  p = phrase;
  p+=6;
