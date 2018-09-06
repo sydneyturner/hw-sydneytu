@@ -15,11 +15,9 @@ simpleCharManager::~simpleCharManager(){}
 char* simpleCharManager::alloc_chars(int n){
 	
 	char* temp;
-	// temp ptr point to the freesapce
-	// advance freespace n times 
+
 	temp = free_place;
 
-	// if freeplace + n < bufferSize
 	if (n < counter) {
 		for (int i = 0; i < n; i++){
 	

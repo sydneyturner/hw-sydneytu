@@ -23,6 +23,5 @@ Problem 3
 
 
 Problem 6
-Explain how it is possible to overwrite part of the buffer that the user still has a pointer to (and may try to access via that pointer).
 	
-	It is possible to overwrite part of the buffer that the user still has a pointer to because 
+	It is possible to overwrite part of the buffer that the user still has a pointer to if the user inputs a null character at the end (ex. 'Hello\n'). The pointer, free_place, points to the next available free space, meaning looks for the next null character which will be the null character that they allocated instead of the space after it. Thus, when they allocate another set of chars, it will overwrite that allocated null character.

@@ -7,8 +7,6 @@ int main(int argc, char *argv[])
 {
   simpleCharManager simplest_mem_manager;
 
-  /*write driver code as described in the assignment to replace this */
-
   char* phrase = simplest_mem_manager.alloc_chars(13);
   phrase[0] = 'H';
   phrase[1] = 'e';

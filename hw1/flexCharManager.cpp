@@ -9,7 +9,6 @@ flexCharManager::flexCharManager() {
 
 	for (int i = 0; i < BUF_SIZE; i++) {
 		buffer[i] = '\0';
-		//std::cout << buffer[i] << std::endl;
 	}
 
 	free_mem = BUF_SIZE;
@@ -28,14 +27,11 @@ char* flexCharManager::alloc_chars(int n){
 	char* temp = NULL;
 
 	if (active_requests >= used_mem_size) {
-		//std::cout << "doubling size" << std::endl;
 		resizeMem();
-		//std::cout << "I doubled the size" << std::endl;
+
 	}
 	else if (active_requests <= (used_mem_size/4)) {
-		//std::cout << "halving size" << std::endl;
 		resizeMem();
-		//std::cout << "I halved the size" << std::endl;
 	}
 
 	if (n > 100000) {
@@ -50,7 +46,6 @@ char* flexCharManager::alloc_chars(int n){
 		
 		used_mem_size--;
 		free_mem -= n;
-		//return temp;
 	}
 	else {
 		int start_differnce;
@@ -68,7 +63,7 @@ char* flexCharManager::alloc_chars(int n){
 			used_memory[0] = new Mem_Block(start_differnce, temp);
 		}
 
-			// find space after the last
+		// find space after the last
 		//end_diff = used_memory[active_requests]->physical_location  //- &buffer[BUF_SIZE-1];
 		if (used_memory[active_requests]->physical_location + n < &buffer[BUF_SIZE]) {
 				// add memblock to the end
@@ -89,7 +84,6 @@ char* flexCharManager::alloc_chars(int n){
 			}
 			else {
 				return NULL;
-				// break;
 			}
 		}
 		
@@ -105,22 +99,17 @@ void flexCharManager::free_chars(char* p) {
 
 	// //char * temp = used_memory;
 
-	// for (int i < 0; i < BUF_SIZE; i++){
-	// 	// get the Memblock
-	// 	// if (temp == &used_memory[i]) {
-	// 	// 	indx = i;
-	// 	// 	break;
-	// 	// }
-	// }
 
 	// start = used_memory[0]->physical_location + used_memory[0]->size;
 	// end = used_memory[active_requests]->physical_location + 
 	// for (char* i = p; i < ; i++) {
 	// 	*i = '\0';
 	// }
-}
+
 	// delete memblock
 	// shift everything on the right to the left
+}
+	
 
 void flexCharManager::resizeMem() {
 
@@ -153,122 +142,3 @@ void flexCharManager::resizeMem() {
 	}
 
 }
-
-// int main(int argc, char *argv[])
-// {
-//   flexCharManager simplest_mem_manager;
-
-// replace with driver code as specificed in the assignment
-//   std::cout << "Hello world!\n";
-  
-//   return 0;
-// }
-
-
-		// int counter = 0;
-		// for (int i = 0; i < BUF_SIZE; i++) {
-		// 	if (buffer[i] == '\0') {
-		// 		for (int j = 0; j < n; j++) {
-		// 			if (buffer[i] + j == '\0') { // if there are n-1 \0 after i
-		// 				// how to stop until it reaches a new character
-		// 				counter++;
-
-						
-		// 			}
-		// 		}
-		// 	}
-			
-		// }
-
-	// if (active_requests == 1) {
-	// 	Mem_Block* newBlock = new Mem_Block; 
-
-	// 	if (used_memory[0]->physical_location < newBlock->physical_location) {
-	// 		used_memory[active_requests] = newBlock;
-	// 		active_requests++;
-		
-	// 		used_mem_size--;
-	// 		free_mem -= n;
-	// 		temp += n;
-	// 	}
-	// 	else if (used_memory[0]->physical_location > newBlock->physical_location) {
-	// 		Mem_Block* tempBlock = new Mem_Block;
-	// 		tempBlock = used_memory[0];
-
-	// 		used_memory[0] = newBlock;
-	// 		used_memory[active_requests] = tempBlock;
-
-	// 		active_requests++;
-		
-	// 		used_mem_size--;
-	// 		free_mem -= n;
-	// 		temp += n;
-
-	// 	}
-	// 	// Do I have to RESIZE NOW
-	// 	//resizeMem(used_mem_size, active_requests);
-	// 	//return temp;
-	// }
-
-
-		// for (int i = 0; i < active_requests; i++) {
-		// 	if ((start - used_memory[i]->start+size) <= n) {
-				
-		// 		// shift over everything to the right by 1
-		// 		for() {
-		// 			used_memory[i] = used_memory[i+1];
-		// 		}
-		// 		// place the memblock in that spot
-
-		// 	}
-		// 	else if () {
-
-		// 	}
-		// }
-
-
-// difference = used_memory[0]->physical_location - &buffer[0];
-
-// if (difference < n) {
-
-// }
-
-// if (difference < n && active_requests != 1) {
-// 	for ( i < active requests) {
-// 		difference - used_memory[i+1]-physical_location = used_memory[i]->physical_location + used_memory[i]->size
-// 		if (difference >= 0) {
-// 			temp = used_memory[i]->physical_location + used_memory[i]->size + 1;
-			//  break;
-// 		}
-// 	}
-// }
-
-// else {
-// 	return temp = buffer;
-// }
-
-// if (active_requests )
-
-
-
-		// int counter = 0;
-		// //int start;
-		// for (int i = 0; i < BUF_SIZE; i++) {
-		// 	if (buffer[i] == '\0') {
-		// 		temp = buffer + i;
-		// 		for (int j = 0; j < n; j++) {
-		// 			if (buffer[i] + j == '\0') { 
-		// 				counter++;
-		// 			}
-		// 		}
-		// 		if (counter <= n) {
-		// 			//for (int k = 0; k < active_requests; k++) {
-		// 				used_memory[active_requests] = new Mem_Block(counter, temp);
-		// 			//}
-		// 			//return temp;
-		// 		}
-		// 		else {
-		// 			return NULL;
-		// 		}
-		// 	}
-		// }
